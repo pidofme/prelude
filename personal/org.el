@@ -27,16 +27,23 @@
 (add-to-list 'org-capture-templates
              '("p" "Protocol" entry
                (file+headline "~/Sync/org/notes/inbox.org" "Web")
-               "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?"))
+               "* %:annotation\nCaptured On: %U\n\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n%?"
+               :immediate-finish t
+               :kill-buffer t))
 
 (add-to-list 'org-capture-templates
              '("l" "Protocol Link" entry
-               (file+headline "~/Sync/org/notes/inbox.org", "Web")
-               "* %? [[%:link][%:description]] \nCaptured On: %U"))
+               (file+headline "~/Sync/org/notes/inbox.org" "Web")
+               "* %:annotation\nCaptured On: %U\n%?"
+               :immediate-finish t
+               :kill-buffer t))
 
 (add-to-list 'org-capture-templates
-             '("j" "Journal" entry (file+datetree "~/Sync/org/notes/journal.org")
+             '("j" "Journal" entry (file+datetree "~/Sync/org/notes/journal.gpg")
                "* %U - %^{heading}\n  %?"))
 
-
+(require 'org-capture)
 (require 'org-protocol)
+
+(require 'epa-file)
+(epa-file-enable)
