@@ -1,4 +1,12 @@
+(require 'org-capture)
 (global-set-key (kbd "C-c c") 'org-capture)
+
+(require 'org-protocol)
+
+(require 'epa-file)
+(epa-file-enable)
+(setq epa-pinentry-mode 'loopback)
+
 
 (setq org-agenda-diary-file  "~/mindspace/diary.org")
 (setq org-default-notes-file "~/Sync/org/notes/inbox.org")
@@ -41,9 +49,3 @@
 (add-to-list 'org-capture-templates
              '("j" "Journal" entry (file+datetree "~/Sync/org/notes/journal.gpg")
                "* %U - %^{heading}\n  %?"))
-
-(require 'org-capture)
-(require 'org-protocol)
-
-(require 'epa-file)
-(epa-file-enable)
